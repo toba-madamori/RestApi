@@ -12,7 +12,7 @@ from rest_framework.response import Response
 
 
 @api_view(['GET', 'POST'])
-def blog_home(request):
+def blog_home(request, format=None):
     if request.method == 'GET':
         articles = BlogModel.objects.all()
         serializer = BlogSerializer(articles, many=True)
@@ -26,7 +26,7 @@ def blog_home(request):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)    
 
 @api_view(['GET', 'PUT', 'DELETE'])
-def blogpost(request, pk):
+def blogpost(request, pk, format=None):
     try:
         snippet = BlogModel.objects.get(pk=pk)
     except BlogModel.DoesNotExist:
