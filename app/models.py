@@ -9,8 +9,11 @@ class BlogModel(models.Model):
     body = models.TextField()
     email = models.EmailField(max_length=100, blank=True, null=True)
     date = models.DateTimeField(auto_now_add=True)
+    author = models.ForeignKey(User, null=False, related_name='blogs_id', blank=True, on_delete=models.CASCADE)
+
     
 
 
     def __str__(self):
         return self.title
+
