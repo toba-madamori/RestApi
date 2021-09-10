@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from rest_framework.schemas import get_schema_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -24,4 +25,9 @@ urlpatterns += [
     path('api-auth/v1/', include('rest_framework.urls')),
     path('api/v1/dj-rest-auth/', include('dj_rest_auth.urls')), #for login, logout, password reset routes
     path('api/v1/dj-rest-auth/registration/', include('dj_rest_auth.registration.urls')), # user registration/signup
+    path('openapi', get_schema_view(
+        title= 'Blog Api',
+        description='A sample API for learning DRF',
+        version='1.0.0'
+    ), name='openapi_schema'),
 ]
